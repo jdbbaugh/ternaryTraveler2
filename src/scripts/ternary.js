@@ -157,6 +157,11 @@ buildLocationDisplay () {
             listenerForEdit.addEventListener("click", () => {
               eventListeners.listenerForEdit()
             })
+            const listenerForDelete = document.getElementById(`${interest.name}-delete-button`)
+
+            listenerForDelete.addEventListener("click", () => {
+              eventListeners.deleteThePoi()
+            })
           }
         })
       })
