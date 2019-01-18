@@ -43,6 +43,9 @@ listenerForEdit () {
   newCost.id = `${targetPoi}-cost`
   costToEdit.replaceWith(newCost)
 
+  let goodByeSearchResults = document.getElementById(`${targetPoi}-delete-button`);
+  goodByeSearchResults.parentNode.removeChild(goodByeSearchResults);
+
   const EditButtonToSave= document.getElementById(`${targetPoi}-edit-button`)
   const newButton= document.createElement("button")
   newButton.setAttribute("type", "button")
@@ -69,14 +72,35 @@ const targetCost = document.getElementById(`${neededCalls}-cost`)
   "reviewcheck": true,
 }
 
-
-
   ternaryData.connectToData({
     "putId" : neededNumbers[0],
     "dataSet" : "interests",
     "fetchType" : "PUT",
     "dataBaseObject" : packageToSend
   })
+  .then( () => {
+    $("#output").empty()
+    ternary.buildForm()
+  })
+},
+deleteThePoi () {
+  if (confirm("Do you want to delete")) {
+    const neededNumbers = event.target.parentNode.firstChild.attributes.name.value.split("-")
+    console.log("o")
+
+    ternaryData.connectToData({
+      "deleteId" : neededNumbers[0],
+      "dataSet" : "interests",
+      "fetchType" : "DELETE",
+      "dataBaseObject" : {
+        "userId": sessionStorage.getItem("userId")
+      }
+    })
+    .then(() => {
+      $("#output").empty()
+      ternary.buildForm()
+    })
+  }
 }
 
 }
