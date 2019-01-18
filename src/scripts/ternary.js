@@ -116,14 +116,16 @@ buildLocationDisplay () {
               elementType: "h3",
               content: interest.name,
               attributes: {
-                id: `${interest.name}-poi`
+                id: `${interest.name}-poi`,
+                name: interest.id
               }
             }))
             document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "p",
               content: interest.description,
               attributes: {
-                id: `${interest.name}-description`
+                id: `${interest.name}-description`,
+                name: interest.id
               }
             }))
             document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
