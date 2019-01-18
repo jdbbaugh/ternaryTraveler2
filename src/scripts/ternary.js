@@ -1,12 +1,13 @@
 import ternaryData from "./ternaryData";
 import domComponents from "./domComponents";
+import eventListeners from "./eventListeners";
 
 const ternary = {
 
 buildForm () {
   const targetContainer = document.getElementById("output");
   targetContainer.appendChild(domComponents.createDomElement({
-    elementType: "form",
+    elementType: "div",
     attributes: {
       id: "form-container",
       class: "form-container"
@@ -16,6 +17,13 @@ buildForm () {
 const inputBuilder = ["name", "desription", "cost"]
 
 inputBuilder.forEach(inputToBe => {
+  document.getElementById("form-container").appendChild(domComponents.createDomElement({
+    elementType: "label",
+    content: ` ${inputToBe}: `,
+    attributes: {
+      id: `location-${inputToBe}-label`
+    }
+  }))
   document.getElementById("form-container").appendChild(domComponents.createDomElement({
     elementType: "input",
     attributes: {
@@ -41,7 +49,7 @@ document.getElementById("form-container").appendChild(domComponents.createDomEle
     places.forEach(place => {
       document.getElementById("option-container").appendChild(domComponents.createDomElement({
         elementType: "option",
-        content: place.name,
+        content: `${place.name}-${place.id}`,
         attributes: {
           id: `city-${place.id}`
         }
@@ -54,6 +62,10 @@ document.getElementById("form-container").appendChild(domComponents.createDomEle
         id: "save-form-button",
       }
     }))
+    const saveButton = document.getElementById("save-form-button");
+    saveButton.addEventListener("click", () => {
+      eventListeners.saveForm();
+    })
   })
   this.buildLocationDisplay()
 },
