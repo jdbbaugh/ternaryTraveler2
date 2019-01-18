@@ -107,31 +107,37 @@ buildLocationDisplay () {
         interests.forEach(interest => {
           if (interest.placeId === place.id) {
             document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "div",
+              attributes: {
+                id: `${interest.name}-card`
+              }
+            }))
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "h3",
               content: interest.name,
               attributes: {
-                id: `${place.name}-poi`
+                id: `${interest.name}-poi`
               }
             }))
-            document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "p",
               content: interest.description,
               attributes: {
-                id: `${place.name}-description`
+                id: `${interest.name}-description`
               }
             }))
-            document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "p",
               content: `$${interest.cost.toFixed(2)}`,
               attributes: {
-                id: `${place.name}-cost`
+                id: `${interest.name}-cost`
               }
             }))
-            document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "button",
               content: `Edit-${interest.name}`,
               attributes: {
-                id: `${place.name}-edit-button`
+                id: `${interest.name}-edit-button`
               }
             }))
 
