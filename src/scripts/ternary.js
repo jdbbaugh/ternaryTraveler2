@@ -1,5 +1,6 @@
 import ternaryData from "./ternaryData";
 import domComponents from "./domComponents";
+import eventListeners from "./eventListeners";
 
 const ternary = {
 
@@ -16,6 +17,13 @@ buildForm () {
 const inputBuilder = ["name", "desription", "cost"]
 
 inputBuilder.forEach(inputToBe => {
+  document.getElementById("form-container").appendChild(domComponents.createDomElement({
+    elementType: "label",
+    content: ` ${inputToBe}: `,
+    attributes: {
+      id: `location-${inputToBe}-label`
+    }
+  }))
   document.getElementById("form-container").appendChild(domComponents.createDomElement({
     elementType: "input",
     attributes: {
@@ -41,7 +49,7 @@ document.getElementById("form-container").appendChild(domComponents.createDomEle
     places.forEach(place => {
       document.getElementById("option-container").appendChild(domComponents.createDomElement({
         elementType: "option",
-        content: place.name,
+        content: `${place.name}-${place.id}`,
         attributes: {
           id: `city-${place.id}`
         }
@@ -54,6 +62,10 @@ document.getElementById("form-container").appendChild(domComponents.createDomEle
         id: "save-form-button",
       }
     }))
+    const saveButton = document.getElementById("save-form-button");
+    saveButton.addEventListener("click", () => {
+      eventListeners.saveForm();
+    })
   })
   this.buildLocationDisplay()
 },
@@ -83,7 +95,7 @@ buildLocationDisplay () {
       }))
       document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
         elementType: "h2",
-        content: place.name,
+        content: place.name.toUpperCase(),
       }))
       ternaryData.connectToData({
         "dataSet" : "interests",
@@ -95,26 +107,40 @@ buildLocationDisplay () {
         interests.forEach(interest => {
           if (interest.placeId === place.id) {
             document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
-              elementType: "p",
-              content: interest.name,
+              elementType: "div",
               attributes: {
-                id: `${place.name}-poi`
+                id: `${interest.name}-card`
               }
             }))
-            document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "h3",
+              content: interest.name,
+              attributes: {
+                id: `${interest.name}-poi`
+              }
+            }))
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "p",
               content: interest.description,
               attributes: {
-                id: `${place.name}-description`
+                id: `${interest.name}-description`
               }
             }))
-            document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "p",
               content: `$${interest.cost.toFixed(2)}`,
               attributes: {
-                id: `${place.name}-cost`
+                id: `${interest.name}-cost`
               }
             }))
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "button",
+              content: `Edit-${interest.name}`,
+              attributes: {
+                id: `${interest.name}-edit-button`
+              }
+            }))
+
           }
         })
       })
