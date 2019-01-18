@@ -60,12 +60,13 @@ saveEditFunction () {
   const neededCalls =event.target.parentElement.id.split("-")[0]
   const neededNumbers = event.target.parentNode.firstChild.attributes.name.value.split("-")
   // console.log(neededNumbers);
+const targetLocation = document.getElementById(`${neededCalls}-poi`)
 const targetDescription = document.getElementById(`${neededCalls}-description`)
 const targetCost = document.getElementById(`${neededCalls}-cost`)
-
+// console.log(neededCalls)
  const packageToSend = {
    "placeId": parseInt(neededNumbers[1]),
-  "name": "LA Dumb Market",
+  "name": neededCalls,
   "description": targetDescription.value,
   "cost": parseInt(targetCost.value),
   "review": "",
