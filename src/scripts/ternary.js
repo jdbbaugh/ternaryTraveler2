@@ -117,7 +117,8 @@ buildLocationDisplay () {
               content: interest.name,
               attributes: {
                 id: `${interest.name}-poi`,
-                name: interest.id
+                class: interest.id,
+                name: `${interest.id}-${place.id}`
               }
             }))
             document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
@@ -141,6 +142,16 @@ buildLocationDisplay () {
               attributes: {
                 id: `${interest.name}-edit-button`
               }
+            }))
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "button",
+              content: `DELETE-${interest.name}`,
+              attributes: {
+                id: `${interest.name}-delete-button`
+              }
+            }))
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "hr",
             }))
             const listenerForEdit = document.getElementById(`${interest.name}-edit-button`)
             listenerForEdit.addEventListener("click", () => {

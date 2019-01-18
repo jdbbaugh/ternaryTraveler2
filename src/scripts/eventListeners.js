@@ -54,20 +54,28 @@ listenerForEdit () {
   saveTheEdits.addEventListener("click", this.saveEditFunction)
 },
 saveEditFunction () {
-  console.log("yeh")
+  const neededCalls =event.target.parentElement.id.split("-")[0]
+  const neededNumbers = event.target.parentNode.firstChild.attributes.name.value.split("-")
+  // console.log(neededNumbers);
+const targetDescription = document.getElementById(`${neededCalls}-description`)
+const targetCost = document.getElementById(`${neededCalls}-cost`)
+
+ const packageToSend = {
+   "placeId": parseInt(neededNumbers[1]),
+  "name": "LA Dumb Market",
+  "description": targetDescription.value,
+  "cost": parseInt(targetCost.value),
+  "review": "",
+  "reviewcheck": true,
+}
+
+
 
   ternaryData.connectToData({
-    "putId" : 2,
-    "dataSet" : "events",
+    "putId" : neededNumbers[0],
+    "dataSet" : "interests",
     "fetchType" : "PUT",
-    "dataBaseObject" : {
-      "id" : 2,
-      "userId": 1,
-      "eventName": "another toga party",
-      "eventDate": "2-15",
-      "eventTime": "3:00pm",
-      "eventLocation": "Vegas"
-    }
+    "dataBaseObject" : packageToSend
   })
 }
 
