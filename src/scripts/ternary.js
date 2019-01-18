@@ -140,7 +140,10 @@ buildLocationDisplay () {
                 id: `${interest.name}-edit-button`
               }
             }))
-
+            const listenerForEdit = document.getElementById(`${interest.name}-edit-button`)
+            listenerForEdit.addEventListener("click", () => {
+              eventListeners.listenerForEdit()
+            })
           }
         })
       })

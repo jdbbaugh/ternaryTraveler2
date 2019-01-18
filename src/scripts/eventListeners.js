@@ -23,8 +23,9 @@ saveForm () {
     "fetchType" : "POST",
     "dataBaseObject" : objectForJson
   })
-
-
+},
+listenerForEdit () {
+  console.log("listen")
 }
 
 }
