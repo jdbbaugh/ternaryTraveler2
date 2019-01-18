@@ -7,7 +7,7 @@ const ternary = {
 buildForm () {
   const targetContainer = document.getElementById("output");
   targetContainer.appendChild(domComponents.createDomElement({
-    elementType: "div",
+    elementType: "form",
     attributes: {
       id: "form-container",
       class: "form-container"
@@ -95,7 +95,7 @@ buildLocationDisplay () {
       }))
       document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
         elementType: "h2",
-        content: place.name,
+        content: place.name.toUpperCase(),
       }))
       ternaryData.connectToData({
         "dataSet" : "interests",
@@ -107,7 +107,7 @@ buildLocationDisplay () {
         interests.forEach(interest => {
           if (interest.placeId === place.id) {
             document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
-              elementType: "p",
+              elementType: "h3",
               content: interest.name,
               attributes: {
                 id: `${place.name}-poi`
@@ -127,6 +127,14 @@ buildLocationDisplay () {
                 id: `${place.name}-cost`
               }
             }))
+            document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "button",
+              content: `Edit-${interest.name}`,
+              attributes: {
+                id: `${place.name}-edit-button`
+              }
+            }))
+
           }
         })
       })

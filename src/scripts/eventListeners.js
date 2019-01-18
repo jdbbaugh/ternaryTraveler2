@@ -1,4 +1,5 @@
 import ternary from "./ternary";
+import ternaryData from "./ternaryData";
 
 const eventListeners = {
 saveForm () {
@@ -17,7 +18,11 @@ saveForm () {
     review: "",
     reviewcheck: false
   }
-  console.log(objectForJson)
+  ternaryData.connectToData({
+    "dataSet" : "interests",
+    "fetchType" : "POST",
+    "dataBaseObject" : objectForJson
+  })
 
 
 }
