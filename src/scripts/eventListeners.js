@@ -23,7 +23,19 @@ saveForm () {
     "fetchType" : "POST",
     "dataBaseObject" : objectForJson
   })
+},
+listenerForEdit () {
+  const targetPoi = event.target.innerText.split("-")[1]
+  console.log(targetPoi)
+  const descriptionToEdit = document.getElementById(`${targetPoi}-description`)
+  const newDescription=document.createElement("input")
+  newDescription.setAttribute("placeholder", descriptionToEdit.textContent)
+  descriptionToEdit.replaceWith(newDescription)
 
+  const costToEdit= document.getElementById(`${targetPoi}-cost`)
+  const newCost= document.createElement("input")
+  newCost.setAttribute("placeholder", costToEdit.textContent)
+  costToEdit.replaceWith(newCost)
 
 }
 
