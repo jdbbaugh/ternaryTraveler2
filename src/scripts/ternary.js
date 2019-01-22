@@ -95,6 +95,7 @@ buildLocationDisplay () {
       }))
       document.getElementById(`${place.name}-card`).appendChild(domComponents.createDomElement({
         elementType: "h2",
+        cssClass: "the-city",
         content: place.name.toUpperCase(),
       }))
       ternaryData.connectToData({
@@ -129,6 +130,15 @@ buildLocationDisplay () {
                 name: interest.id
               }
             }))
+            if (interest.cost === null) {
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "p",
+              content: 0,
+              attributes: {
+                id: `${interest.name}-cost`
+              }
+            }))
+          } else {
             document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "p",
               content: `$${interest.cost.toFixed(2)}`,
@@ -136,6 +146,16 @@ buildLocationDisplay () {
                 id: `${interest.name}-cost`
               }
             }))
+          }
+          if (interest.reviewcheck){
+          document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+            elementType: "p",
+            content: `Review: ${interest.review}`,
+            attributes: {
+              id: `${interest.name}-given-review`
+            }
+          }))
+          }
             document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "button",
               content: `Edit-${interest.name}`,
@@ -148,6 +168,22 @@ buildLocationDisplay () {
               content: `DELETE-${interest.name}`,
               attributes: {
                 id: `${interest.name}-delete-button`
+              }
+            }))
+            interest.reviewcheck ?
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "button",
+              content: "Edit Review",
+              attributes: {
+                id: `${interest.name}-review-button`
+              }
+            }))
+            :
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "button",
+              content: `Review-${interest.name}?`,
+              attributes: {
+                id: `${interest.name}-add-review-button`
               }
             }))
             document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({

@@ -33,13 +33,13 @@ listenerForEdit () {
 // ================================================================================
   const descriptionToEdit = document.getElementById(`${targetPoi}-description`)
   const newDescription=document.createElement("input")
-  newDescription.setAttribute("placeholder", descriptionToEdit.textContent)
+  newDescription.value = descriptionToEdit.textContent
   newDescription.id = `${targetPoi}-description`
   descriptionToEdit.replaceWith(newDescription)
 
   const costToEdit= document.getElementById(`${targetPoi}-cost`)
   const newCost= document.createElement("input")
-  newCost.setAttribute("placeholder", costToEdit.textContent)
+  newCost.value = costToEdit.textContent
   newCost.id = `${targetPoi}-cost`
   costToEdit.replaceWith(newCost)
 
@@ -63,12 +63,12 @@ saveEditFunction () {
 const targetLocation = document.getElementById(`${neededCalls}-poi`)
 const targetDescription = document.getElementById(`${neededCalls}-description`)
 const targetCost = document.getElementById(`${neededCalls}-cost`)
-// console.log(neededCalls)
+const finalCost = targetCost.value[0] === "$" ? targetCost.value.slice(1) : targetCost.value
  const packageToSend = {
    "placeId": parseInt(neededNumbers[1]),
   "name": neededCalls,
   "description": targetDescription.value,
-  "cost": parseInt(targetCost.value),
+  "cost": parseInt(finalCost),
   "review": "",
   "reviewcheck": true,
 }
