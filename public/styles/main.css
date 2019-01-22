@@ -7,3 +7,10 @@ button {
   background-color: #bc986a;
   margin: 5px;
 }
+
+.the-city {
+  background-color: maroon;
+  color: ghostwhite;
+  padding-top: 5px;
+  text-align: center;
+}
