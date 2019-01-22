@@ -129,6 +129,15 @@ buildLocationDisplay () {
                 name: interest.id
               }
             }))
+            if (interest.cost === null) {
+            document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
+              elementType: "p",
+              content: 0,
+              attributes: {
+                id: `${interest.name}-cost`
+              }
+            }))
+          } else {
             document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "p",
               content: `$${interest.cost.toFixed(2)}`,
@@ -136,6 +145,7 @@ buildLocationDisplay () {
                 id: `${interest.name}-cost`
               }
             }))
+          }
             document.getElementById(`${interest.name}-card`).appendChild(domComponents.createDomElement({
               elementType: "button",
               content: `Edit-${interest.name}`,
